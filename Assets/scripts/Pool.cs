@@ -7,8 +7,6 @@ public class Pool : MonoBehaviour
     [SerializeField] private PositionManager _positionManager;
     [SerializeField] private CubeSpawner _cubeSpawner;
 
-    private int _poolCapacity;
-    private int _poolMaxSize;
     private ObjectPool<GameObject> _pool;
 
     public void GetObject()
@@ -23,16 +21,12 @@ public class Pool : MonoBehaviour
 
     private void Awake()
     {
-        _poolCapacity = _cubeSpawner.AmountCubes;
-        _poolMaxSize = _cubeSpawner.AmountCubes;
         _pool = new ObjectPool<GameObject>(
             createFunc: () => Instantiate(_prefab),
             actionOnGet: (obj) => ActionOnGet(obj),
             actionOnRelease: (obj) => obj.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),
-            collectionCheck: true,
-            defaultCapacity: _poolCapacity,
-            maxSize: _poolMaxSize);
+            collectionCheck: true);
     }
 
     private void ActionOnGet(GameObject obj)

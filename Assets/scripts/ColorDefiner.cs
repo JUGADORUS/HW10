@@ -4,6 +4,12 @@ using UnityEngine;
 public class ColorDefiner : MonoBehaviour
 {
     private bool _isColored = false;
+    private Renderer _renderer;
+
+    private void Awake()
+    {
+        _renderer = gameObject.GetComponent<Renderer>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -20,6 +26,6 @@ public class ColorDefiner : MonoBehaviour
         float randomChannelTwo = Random.Range(0f, 1f);
         float randomChannelThree = Random.Range(0f, 1f);
 
-        gameObject.GetComponent<Renderer>().material.color = new Color(randomChannelOne, randomChannelTwo, randomChannelThree);
+        _renderer.material.color = new Color(randomChannelOne, randomChannelTwo, randomChannelThree);
     }
 }

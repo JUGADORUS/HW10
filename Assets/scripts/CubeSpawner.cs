@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] public int AmountCubes;
-    [SerializeField] private GameObject _objectToSpawn;
+    [SerializeField] private int _amountCubes;
+    [SerializeField] private Cube _cube;
     [SerializeField] private PositionManager _positionManager;
     [SerializeField] private Pool _pool;
+    [SerializeField] private Remover _remover;
+
+    private void Awake()
+    {
+        _remover = _cube.GetComponent<Remover>();
+    }
 
     private void Start()
     {
@@ -14,14 +20,14 @@ public class CubeSpawner : MonoBehaviour
 
     private void SpawnCubes()
     {
-        if (_objectToSpawn.TryGetComponent<Remover>(out Remover remover))
+        if (_cube.TryGetComponent<Remover>(out Remover remover))
         {
-            _objectToSpawn.GetComponent<Remover>().Pool = _pool;
+           _remover.Pool = _pool;
         }
 
-        for (int i = 0; i < AmountCubes; i++)
+        for (int i = 0; i < _amountCubes; i++)
         {
-            Instantiate(_objectToSpawn, _positionManager.GetRandomPosition(), Quaternion.identity);
+            Instantiate(_cube, _positionManager.GetRandomPosition(), Quaternion.identity);
         }
     }
 }
