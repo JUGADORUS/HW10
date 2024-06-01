@@ -5,7 +5,6 @@ public class Pool : MonoBehaviour
 {
     [SerializeField] private GameObject _prefab;
     [SerializeField] private PositionManager _positionManager;
-    [SerializeField] private CubeSpawner _cubeSpawner;
 
     private ObjectPool<GameObject> _pool;
 
