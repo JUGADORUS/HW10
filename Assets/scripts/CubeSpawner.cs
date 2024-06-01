@@ -7,7 +7,7 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField] private PositionManager _positionManager;
     [SerializeField] private Pool _pool;
 
-    void Start()
+    private void Start()
     {
         SpawnCubes();
     }

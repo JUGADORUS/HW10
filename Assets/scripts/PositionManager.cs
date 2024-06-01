@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PositionManager : MonoBehaviour
@@ -14,6 +12,7 @@ public class PositionManager : MonoBehaviour
         int positionOfCubeX = Random.Range(_minPostionOfPlatform, _maxPostionOfPlatform);
         int positionOfCubeZ = Random.Range(_minPostionOfPlatform, _maxPostionOfPlatform);
         int positionOfCubeY = Random.Range(_minHeight, _maxHeight);
+
         return new Vector3(positionOfCubeX, positionOfCubeY, positionOfCubeZ);
     }
 }
