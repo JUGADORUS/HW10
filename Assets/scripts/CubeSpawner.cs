@@ -22,7 +22,7 @@ public class CubeSpawner : MonoBehaviour
     {
         if (_cube.TryGetComponent<Remover>(out Remover remover))
         {
-           _remover.Pool = _pool;
+            _remover.SetPool(_pool);
         }
 
         for (int i = 0; i < _amountCubes; i++)

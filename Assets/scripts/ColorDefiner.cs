@@ -3,21 +3,32 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class ColorDefiner : MonoBehaviour
 {
-    private bool _isColored = false;
     private Renderer _renderer;
+    private Cube _cube;
 
     private void Awake()
     {
         _renderer = gameObject.GetComponent<Renderer>();
+
+        if (gameObject.TryGetComponent<Cube>(out Cube cube))
+        {
+            _cube = cube;
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnEnable()
     {
-        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform) && _isColored == false)
-        {
-            Define();
-            _isColored = true;
-        }
+        _cube.TouchedPlatform += Define;
+    }
+
+    private void OnDisable()
+    {
+        _cube.TouchedPlatform -= Define;
+    }
+
+    public void SetMaterial(Material material)
+    {
+        _renderer.material = material;
     }
 
     private void Define()

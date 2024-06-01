@@ -151,9 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512b79abc31836d469edff9a256f40e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 6056374868823123707, guid: ec24a4e6b9f883847a7bfe3eef998c1c, type: 3}
+  _prefab: {fileID: -1683378583279575047, guid: ec24a4e6b9f883847a7bfe3eef998c1c,
+    type: 3}
   _positionManager: {fileID: 627780534}
-  _cubeSpawner: {fileID: 1237582341}
+  _colorDefiner: {fileID: 0}
 --- !u!4 &163924292
 Transform:
   m_ObjectHideFlags: 0
@@ -704,11 +705,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3bec436413bc7a47b68a56de115e164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmountCubes: 35
-  _objectToSpawn: {fileID: 6056374868823123707, guid: ec24a4e6b9f883847a7bfe3eef998c1c,
-    type: 3}
+  _amountCubes: 45
+  _cube: {fileID: -1683378583279575047, guid: ec24a4e6b9f883847a7bfe3eef998c1c, type: 3}
   _positionManager: {fileID: 627780534}
   _pool: {fileID: 163924291}
+  _remover: {fileID: -5052417204871700372, guid: ec24a4e6b9f883847a7bfe3eef998c1c,
+    type: 3}
 --- !u!4 &1237582342
 Transform:
   m_ObjectHideFlags: 0

@@ -3,32 +3,33 @@ using UnityEngine.Pool;
 
 public class Pool : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Cube _prefab;
     [SerializeField] private PositionManager _positionManager;
+    [SerializeField] private ColorDefiner _colorDefiner;
 
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<Cube> _pool;
+
+    private void Awake()
+    {
+        _pool = new ObjectPool<Cube>(
+            createFunc: () => Instantiate(_prefab),
+            actionOnGet: (obj) => OnGetAct(obj),
+            actionOnRelease: (obj) => obj.gameObject.SetActive(false),
+            actionOnDestroy: (obj) => Destroy(obj),
+            collectionCheck: true);
+    }
 
     public void GetObject()
     {
         _pool.Get();
     }
 
-    public void PutObjectBack(GameObject gameObject)
+    public void PutObjectBack(Cube cube)
     {
-        _pool.Release(gameObject);
+        _pool.Release(cube);
     }
 
-    private void Awake()
-    {
-        _pool = new ObjectPool<GameObject>(
-            createFunc: () => Instantiate(_prefab),
-            actionOnGet: (obj) => ActionOnGet(obj),
-            actionOnRelease: (obj) => obj.SetActive(false),
-            actionOnDestroy: (obj) => Destroy(obj),
-            collectionCheck: true);
-    }
-
-    private void ActionOnGet(GameObject obj)
+    private void OnGetAct(Cube obj)
     {
         obj.transform.position = _positionManager.GetRandomPosition();
 
@@ -39,6 +40,7 @@ public class Pool : MonoBehaviour
             rigidbody.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        obj.SetActive(true);
+        obj.gameObject.SetActive(true);
+        obj.SetDefaultColor();
     }
 }

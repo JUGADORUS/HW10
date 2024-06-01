@@ -173,3 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a2aa10368e9314a86c8163ba309b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _colorDefiner: {fileID: 5477644379714877311}
+  _defaultMaterial: {fileID: 2100000, guid: 140461f245a9a3342bed67bc52f4bc4f, type: 2}
